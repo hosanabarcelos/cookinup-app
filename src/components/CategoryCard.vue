@@ -10,8 +10,8 @@
                 :key="ingrediente"
                 v-for="ingrediente in categoria.ingredientes"
             >
-                <Tag
-                    :text="ingrediente"
+                <ClickableIngredient
+                    :ingrediente="ingrediente"
                 />
             </li>
         </ul>
@@ -21,11 +21,11 @@
 <script lang="ts">
 import type Category from '@/interfaces/Category';
 import { PropType } from 'vue';
-import Tag from './Tag.vue';
+import ClickableIngredient from './ClickableIngredient.vue';
 
 export default {
     components: {
-        Tag
+        ClickableIngredient
     },
     props: {
         categoria: {
