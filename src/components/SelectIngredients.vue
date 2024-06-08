@@ -11,6 +11,7 @@
             >
                 <category-card
                     :categoria="categoria"
+                    @add-ingredient="$emit('addIngredient', $event)"
                 />
             </li>
         </ul>
@@ -37,7 +38,8 @@ export default {
 
     async created() {
         this.categorias = await getCategories();
-    }
+    },
+    emits: ['addIngredient']
 }
 </script>
 
@@ -69,6 +71,7 @@ export default {
 .dica {
   align-self: flex-start;
   margin-bottom: 3.5rem;
+  margin-left: 8rem;
 }
 
 @media only screen and (max-width: 767px) {

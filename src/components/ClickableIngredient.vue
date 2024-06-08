@@ -1,7 +1,7 @@
 <template>
     <button
         class="ingrediente__tag"
-        @click="selected = !selected"
+        @click="setIngredient"
         :aria-pressed="selected"
     >
         <tag :text="ingrediente" :active="selected"/>
@@ -25,7 +25,17 @@ export default {
             type: String,
             required: true
         }
-    }
+    },
+    methods: {
+        setIngredient() {
+            this.selected = !this.selected
+
+            if(this.selected) {
+                this.$emit('addIngredient', this.ingrediente);
+            }
+        }
+    },
+    emits: ['addIngredient']
 }
 </script>
 

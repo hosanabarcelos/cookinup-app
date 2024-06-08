@@ -1,7 +1,9 @@
 <template>
     <main class="conteudo-principal">
         <list :ingredientes="ingredientes" />
-        <select-ingredients />
+        <select-ingredients
+            @add-ingredient="addIngredient"
+        />
     </main>
 </template>
 
@@ -16,12 +18,12 @@ export default {
     },
     data() {
         return {
-            ingredientes: [
-                'Alho',
-                'Páprica',
-                'Orégano',
-                'Lemon'
-            ]
+            ingredientes: [] as string[]
+        }
+    },
+    methods: {
+        addIngredient(ingrediente: string) {
+            this.ingredientes.push(ingrediente)
         }
     }
 }
