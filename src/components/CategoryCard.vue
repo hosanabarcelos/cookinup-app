@@ -12,6 +12,7 @@
             >
                 <ClickableIngredient
                     :ingrediente="ingrediente"
+                    @add-ingredient="$emit('addIngredient', $event)"
                 />
             </li>
         </ul>
@@ -32,7 +33,8 @@ export default {
              type: Object as PropType<Category>,
              required: true
         }
-    }
+    },
+    emits: ['addIngredient']
 }
 </script>
 
