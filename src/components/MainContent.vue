@@ -8,9 +8,10 @@
                 <li
                     :key="ingrediente"
                     v-for="ingrediente in ingredientes"
-                    class="ingrediente"
                 >
-                    {{ ingrediente }}
+                    <tag
+                        :text="ingrediente"
+                    />
                 </li>
             </ul>
             <p v-else class="paragrafo lista-vazia">
@@ -18,11 +19,20 @@
                 Sua lista está vazia, selecione ingredientes para iniciar.
             </p>
         </section>
+
+        <select-ingredients />
     </main>
 </template>
 
 <script lang="ts">
+import SelectIngredients from './SelectIngredients.vue';
+import Tag from '../components/Tag.vue';
+
 export default {
+    components: {
+        Tag,
+        SelectIngredients
+    },
     data() {
         return {
             ingredientes: [
@@ -61,18 +71,6 @@ export default {
   justify-content: center;
   gap: 1rem 1.5rem;
   flex-wrap: wrap;
-}
-
-.ingrediente {
-  display: inline-block;
-  border-radius: 0.5rem;
-  min-width: 4.25rem;
-  padding: 0.5rem;
-  text-align: center;
-    transition: 0.2s;
-    color: var(--creme, #FFFAF3);
-  background: var(--coral, #F0633C);
-  font-weight: 700;
 }
 
 .lista-vazia {
