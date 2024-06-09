@@ -12,7 +12,7 @@ export default {
 <template>
   <article class="receita">
     <header class="receita__cabecalho">
-      <img class="receita__imagem" :src="`/imagens/receitas/${recipe.imagem}`" :alt="`Foto de ${recipe.nome}`">
+      <img class="receita__imagem" :src="`/images/receitas/${recipe.imagem}`" :alt="`Foto de ${recipe.nome}`">
     </header>
 
     <section class="receita__corpo">
