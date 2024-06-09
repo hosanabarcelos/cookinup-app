@@ -1,4 +1,4 @@
-export default interface Category {
+export default interface Recipe {
   nome: string;
   ingredientes: string[];
   imagem: string;

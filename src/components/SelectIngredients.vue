@@ -1,47 +1,49 @@
-<template>
-    <section class="selecionar-ingredientes">
-        <h1 class="cabecalho titulo-ingredientes">ingredientes</h1>
-        <p class="paragrafo-lg instrucoes">
-            Selecione abaixo os ingredientes que você quer usar nesta receita:
-        </p>
-        <ul class="categorias">
-            <li
-                :key="categoria.nome"
-                v-for="categoria in categorias"
-            >
-                <category-card
-                    :categoria="categoria"
-                    @add-ingredient="$emit('addIngredient', $event)"
-                />
-            </li>
-        </ul>
-        <p class="paragrafo dica">
-            Atenção: Consideramos que você tem em casa sal, pimenta e água.
-        </p>
-    </section>
-</template>
-
 <script lang="ts">
 import { getCategories } from '@/http/index';
 import type Category from '@/interfaces/Category';
 import CategoryCard from './CategoryCard.vue';
+import DefaultButton from './DefaultButton.vue';
 
 export default {
-    components: {
-        CategoryCard
-    },
-    data() {
-        return {
-            categorias: [] as Category[],
-        }
-    },
-
-    async created() {
-        this.categorias = await getCategories();
-    },
-    emits: ['addIngredient']
+  name: 'SelectIngredients',
+  data() {
+    return {
+      categories: [] as Category[]
+    };
+  },
+  async created() {
+    this.categories = await getCategories();
+  },
+  components: { CategoryCard, DefaultButton },
+  emits: ['addIngredient', 'removeIngredient', 'buscarReceitas']
 }
 </script>
+
+<template>
+  <section class="selecionar-ingredientes">
+    <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
+
+    <p class="paragrafo-lg instrucoes">
+      Selecione abaixo os ingredientes que você quer usar nesta receita:
+    </p>
+
+    <ul class="categorias">
+      <li v-for="category in categories" :key="category.nome">
+        <CategoryCard
+          :category="category"
+          @add-ingredient="$emit('addIngredient', $event)"
+          @remove-ingredient="$emit('removeIngredient', $event)"
+        />
+      </li>
+    </ul>
+
+    <p class="paragrafo dica">
+      *Atenção: consideramos que você tem em casa sal, pimenta e água.
+    </p>
+
+    <DefaultButton text="Buscar receitas!" @click="$emit('buscarReceitas')" />
+  </section>
+</template>
 
 <style scoped>
 .selecionar-ingredientes {
@@ -69,7 +71,7 @@ export default {
 }
 
 .dica {
-  align-self: flex-start;
+  align-self: center;
   margin-bottom: 3.5rem;
   margin-left: 8rem;
 }
