@@ -1,46 +1,43 @@
-# cookinup
+<h2>
+    Cookin'Up!
+</h2>
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+**Cookin'Up!** é uma aplicação que tem como objetivo retornar receitas de acordo com o que o usuário informa que possui de ingredientes disponíveis em casa.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+  
+ ## 📚 Tecnologias
 
-## Type Support for `.vue` Imports in TS
+Tecnologias usadas durante o desenvolvimento:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- [Vite](https://vitejs.dev/)
+- [Vue](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Gist](https://gist.github.com/)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## ⚙️ Como testar?
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+Clone o projeto:
+```bash
+$ git clone https://github.com/hosanabarcelos/cookinup-app.git
+```
+Instale as dependências:
+``` bash
+$ npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
+Compile o projeto e visualize a aplicação no navegador, através da porta informada pelo `Vite`:
+``` bash
+$ npm run dev
 ```
+---
 
-### Type-Check, Compile and Minify for Production
+1. Visualize uma lista de categorias e selecione os ingredientes desejados;
+2. Clique em "buscar" para visualizar os resultados;
+3. Para editar sua seleção, volte para a seção anterior clicando em "Editar".
 
-```sh
-npm run build
-```
+IPC: classes de estilo adquiridas em projeto externo, pois o foco de estudo foi o funcionamento da aplicação.
 
-### Lint with [ESLint](https://eslint.org/)
+Made by [Hosana Barcelos](https://github.com/hosanabarcelos).
 
-```sh
-npm run lint
-```
+
