@@ -71,7 +71,7 @@ export default {
 }
 
 .dica {
-  align-self: flex-start;
+  align-self: center;
   margin-bottom: 3.5rem;
   margin-left: 8rem;
 }
