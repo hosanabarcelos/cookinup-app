@@ -1,5 +1,5 @@
 export default interface Category {
-    nome: string;
-    ingredientes: string[];
-    imagem: string;
+  nome: string;
+  ingredientes: string[];
+  imagem: string;
 }
