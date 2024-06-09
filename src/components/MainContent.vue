@@ -4,25 +4,25 @@ import SelectIngredients from './SelectIngredients.vue';
 import List from './List.vue';
 import Tag from './Tag.vue';
 
-type Pagina = 'SelectIngredients' | 'ShowRecipe';
+type Page = 'SelectIngredients' | 'ShowRecipe';
 
 export default {
   data() {
     return {
       ingredientes: [] as string[],
-      conteudo: 'SelectIngredients' as Pagina
+      conteudo: 'SelectIngredients' as Page
     };
   },
   components: { SelectIngredients, Tag, List, ShowRecipe },
   methods: {
-    addIngredient(ingrediente: string) {
-      this.ingredientes.push(ingrediente)
+    addIngredient(ingredient: string) {
+      this.ingredientes.push(ingredient)
     },
-    removeIngredient(ingrediente: string) {
-      this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+    removeIngredient(ingredient: string) {
+      this.ingredientes = this.ingredientes.filter(list => ingredient !== list);
     },
-    navegar(pagina: Pagina) {
-      this.conteudo = pagina;
+    navigate(page: Page) {
+      this.conteudo = page;
     }
   }
 }
@@ -36,12 +36,12 @@ export default {
       <SelectIngredients v-if="conteudo === 'SelectIngredients'"
         @add-ingredient="addIngredient"
         @remove-ingredient="removeIngredient"
-        @buscar-receitas="navegar('ShowRecipe')"
+        @buscar-receitas="navigate('ShowRecipe')"
       />
 
       <ShowRecipe v-else-if="conteudo === 'ShowRecipe'"
         :ingredientes="ingredientes"
-        @edit-recipes="navegar('SelectIngredients')"
+        @edit-recipes="navigate('SelectIngredients')"
       />
     </KeepAlive>
   </main>
