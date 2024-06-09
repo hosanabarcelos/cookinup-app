@@ -1,42 +1,37 @@
-<template>
-    <article class="categoria">
-        <header class="categoria__cabecalho">
-            <img :src="`/imagens/icones/categorias_ingredientes/${categoria.imagem}`" alt="" class="categoria__imagem">
-
-            <h class="paragrafo-lg categoria__nome">{{ categoria.nome }}</h>
-        </header>
-        <ul class="categoria__ingredientes">
-            <li
-                :key="ingrediente"
-                v-for="ingrediente in categoria.ingredientes"
-            >
-                <ClickableIngredient
-                    :ingrediente="ingrediente"
-                    @add-ingredient="$emit('addIngredient', $event)"
-                />
-            </li>
-        </ul>
-    </article>
-</template>
-
 <script lang="ts">
 import type Category from '@/interfaces/Category';
-import { PropType } from 'vue';
+import type { PropType } from 'vue';
+import Tag from './Tag.vue';
 import ClickableIngredient from './ClickableIngredient.vue';
 
 export default {
-    components: {
-        ClickableIngredient
-    },
-    props: {
-        categoria: {
-             type: Object as PropType<Category>,
-             required: true
-        }
-    },
-    emits: ['addIngredient']
+  props: {
+    category: { type: Object as PropType<Category>, required: true }
+  },
+  components: { Tag, ClickableIngredient },
+  emits: ['addIngredient', 'removeIngredient']
 }
 </script>
+
+<template>
+  <article class="categoria">
+    <header class="categoria__cabecalho">
+      <img :src="`/imagens/icones/categorias_ingredientes/${category.imagem}`" alt="" class="categoria__imagem">
+
+      <h2 class="paragrafo-lg categoria__nome">{{ category.nome }}</h2>
+    </header>
+
+    <ul class="categoria__ingredientes">
+      <li v-for="ingrediente in category.ingredientes" :key="ingrediente">
+        <ClickableIngredient
+          :ingrediente="ingrediente"
+          @add-ingredient="$emit('addIngredient', $event)"
+          @remove-ingredient="$emit('removeIngredient', $event)"
+        />
+      </li>
+    </ul>
+  </article>
+</template>
 
 <style scoped>
 .categoria {
