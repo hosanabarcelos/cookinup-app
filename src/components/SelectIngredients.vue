@@ -5,7 +5,7 @@ import CategoryCard from './CategoryCard.vue';
 import DefaultButton from './DefaultButton.vue';
 
 export default {
-  name: 'SelecionarIngredientes',
+  name: 'SelectIngredients',
   data() {
     return {
       categories: [] as Category[]

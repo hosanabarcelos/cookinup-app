@@ -1,33 +1,51 @@
-<template>
-    <main class="conteudo-principal">
-        <list :ingredientes="ingredientes" />
-        <select-ingredients
-            @add-ingredient="addIngredient"
-        />
-    </main>
-</template>
-
 <script lang="ts">
+import ShowRecipe from './ShowRecipe.vue';
 import SelectIngredients from './SelectIngredients.vue';
 import List from './List.vue';
+import Tag from './Tag.vue';
+
+type Pagina = 'SelectIngredients' | 'ShowRecipe';
 
 export default {
-    components: {
-        List,
-        SelectIngredients
+  data() {
+    return {
+      ingredientes: [] as string[],
+      conteudo: 'SelectIngredients' as Pagina
+    };
+  },
+  components: { SelectIngredients, Tag, List, ShowRecipe },
+  methods: {
+    addIngredient(ingrediente: string) {
+      this.ingredientes.push(ingrediente)
     },
-    data() {
-        return {
-            ingredientes: [] as string[]
-        }
+    removeIngredient(ingrediente: string) {
+      this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
     },
-    methods: {
-        addIngredient(ingrediente: string) {
-            this.ingredientes.push(ingrediente)
-        }
+    navegar(pagina: Pagina) {
+      this.conteudo = pagina;
     }
+  }
 }
 </script>
+
+<template>
+  <main class="conteudo-principal">
+    <List :ingredientes="ingredientes" />
+
+    <KeepAlive include="SelectIngredients">
+      <SelectIngredients v-if="conteudo === 'SelectIngredients'"
+        @add-ingredient="addIngredient"
+        @remove-ingredient="removeIngredient"
+        @buscar-receitas="navegar('ShowRecipe')"
+      />
+
+      <ShowRecipe v-else-if="conteudo === 'ShowRecipe'"
+        :ingredientes="ingredientes"
+        @edit-recipes="navegar('SelectIngredients')"
+      />
+    </KeepAlive>
+  </main>
+</template>
 
 <style scoped>
 .conteudo-principal {
@@ -40,6 +58,31 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 5rem;
+}
+
+.sua-lista-texto {
+  color: var(--coral, #F0633C);
+  display: block;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ingredientes-sua-lista {
+  display: flex;
+  justify-content: center;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.lista-vazia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+
+  color: var(--coral, #F0633C);
+  text-align: center;
 }
 
 @media only screen and (max-width: 1300px) {
