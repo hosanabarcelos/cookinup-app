@@ -73,6 +73,8 @@ export default {
 .dica {
   align-self: center;
   margin-bottom: 3.5rem;
+  color: #c29d24;
+  font-size: 12px;
 }
 
 @media only screen and (max-width: 767px) {
