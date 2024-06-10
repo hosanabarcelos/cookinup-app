@@ -6,7 +6,10 @@ import ClickableIngredient from './ClickableIngredient.vue';
 
 export default {
   props: {
-    category: { type: Object as PropType<Category>, required: true }
+    category: {
+        type: Object as PropType<Category>,
+            required: true
+        }
   },
   components: { Tag, ClickableIngredient },
   emits: ['addIngredient', 'removeIngredient']

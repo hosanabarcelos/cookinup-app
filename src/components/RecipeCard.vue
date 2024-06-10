@@ -4,7 +4,10 @@ import type { PropType } from 'vue';
 
 export default {
   props: {
-    recipe: { type: Object as PropType<Recipe>, required: true }
+    recipe: {
+        type: Object as PropType<Recipe>,
+            required: true
+        }
   }
 }
 </script>
